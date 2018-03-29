@@ -1,44 +1,25 @@
-nomber=input("Enter Credit card nomber!\n(Attention: 16 digits.):\n\n")
-long=len(nomber)
+number=input("Enter Credit card number!\n(Attention: 16 digits.):\n\n")             # Вводим номер карты.
+long=len(number)                                                                    # Присваиваем переменной 'long' число - равное длинне номера карты.
 try:
-    int(nomber)
+    number=int(number)                                                              # Проверяем на ошибки и сравниваем длинну.
+    if long!=16 or number<0:
+        exit()
 except ValueError:
     print("Not the correct format!")
-    nomber = input("Enter your card nomber again!\n(Attention: 16 digits.):\n\n")
-    long = len(nomber)
-    try:
-        nomber=int(nomber)
-    except ValueError:
-        exit()
-
-if long==16:
-    #string>=len(nomber)
-    print("Ok")
-else:
     exit()
-    #print(long)
 
-    #try:
-
-mm=int(input("\nEnter month:\n\n"))
-#print(mm)
-"""try:
-    mm>12
-    print("Noob")
-except ValueError:
-    print("Ok")"""
-
-yy=int(input("\nEnter year:\n\n"))
-period=print(mm, yy,sep="/")
+mm, yy = input("\nExperation date your card in format \"mm/yy\":\n\n").split("/")       # Методом 'split' задаем значения переменным 'mm' и 'yy'.
 try:
-    period=int(period)
-    exit()
-except TypeError:
-    print("Ok")
+    if not len(mm)==2 or not len(yy)==2 or int(mm)<1 or int(mm)>12 or int(yy)<0:    # Проверяем на все возможные ошибки ввода.
+        exit()
+    else:
+        print("\nOk")
 
-#period=int(input("\nEnter validity period of the card in format mm/yy:\n\n"))
-cvv=input("\nEnter CVV key:\n\n")
+except ValueError:
+    exit()
+
+cvv=input("\nEnter secret key:\n\n")
 if len(cvv)!=3:
-    print("Error")
+    print("\nError!!!")
 else:
-    print("Ha - ha - ha. Now I will use your credit card!")
+    print("\nHa - ha - ha. Now I will use your credit card!")
