@@ -28,29 +28,29 @@ def generated_input():
     if len(mm) == 1:
         mm = '0'+ (mm)
     yy = str(random.randint(18, 21))
-    exp_day = mm + '/' + yy
-
+    exp_day = str(f'{mm}/{yy}')
         #generated key "Card":
-    card = list(''.join(choice(digits) for i in range(4)) +
-                ''.join(choice(digits) for i in range(4)) +
-                ''.join(choice(digits) for i in range(4)) +
-                ''.join(choice(digits) for i in range(4)))
+    card = list(''.join(choice(digits) for i in range(16)))
+
     if random.randint(1, 100) == 1:
         card[random.randint(0, len(card)-1)] = random.choice(error_elm_card)
-    card = ''.join(card)
-    card = card[0:4] + ' ' + card[4:8] + ' ' + card[8:12] + ' ' + card[12:16]
+    card = list(map(''.join, zip(*[iter(card)] * 4)))
+    card = ' '.join(card)
 
         #generated Dictionary:
     cardholders = {"Name": name, "Phone": phone, "Exp_day": exp_day, "Card": card}
-
     return cardholders
 
 #check function phone and card in each dictionary
 
 def check_credents(rand_cred):
-    phone_cred = re.search(r'[a-zA-Z\[\]\-\ ]', rand_cred.get("Phone"))
-    card_cred = re.search(r'[a-zA-Z\ ]', (rand_cred.get("Card")[0:4]+rand_cred.get("Card")[5:9]+rand_cred.get("Card")[10:14]+rand_cred.get("Card")[15:19]))
-    if phone_cred or card_cred:
+    phone_cred = re.match(r'\+\d{12}$', rand_cred.get("Phone"))
+
+    card_cred = re.match(r'\d{4}\ \d{4}\ \d{4}\ \d{4}$', rand_cred.get("Card"))
+
+    if phone_cred and card_cred:
+
         return True
     else:
+
         return False
