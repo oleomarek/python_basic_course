@@ -1,5 +1,5 @@
 while True:
-    number_card = str(input("Enter Credit card number in format: **** **** **** ****\n(Attention: 16 digits.):\n\n"))              # Вводим номер карты.
+    number_card = input("Enter Credit card number in format: **** **** **** ****\n(Attention: 16 digits.):\n\n")              # Вводим номер карты.
     list_card_num = number_card.split(" ")
     u = True
     if len(list_card_num) != 4:
